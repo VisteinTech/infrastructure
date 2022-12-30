@@ -3,7 +3,13 @@ provider "aws" {
 }
 
 variable "vpc_cidr_block" {}
-variable "subnet_cidr_blocks" {}
+
+variable "cidr_blocks" {
+  type = list(object({
+    cidr_block = string
+    name = string
+  }))
+}
 variable "env_prefix" {}
 variable "avail_zone" {}
 
@@ -18,7 +24,7 @@ resource "aws_vpc" "dev-vpc" {
 
 resource "aws_subnet" "dev-subnet-1" {
   vpc_id = aws_vpc.dev-vpc.id
-  cidr_block = var.subnet_cidr_blocks[0].cidr_block
+  cidr_block = var.cidr_blocks[0].cidr_block
   availability_zone = var.avail_zone
 
   tags = {
@@ -30,9 +36,10 @@ data "aws_vpc" "existing_vpc" {
   default = true
 }
 
+#creating on subnet on the default vpc from data
 resource "aws_subnet" "dev-subnet-2" {
     vpc_id = data.aws_vpc.existing_vpc.id
-    cidr_block = var.subnet_cidr_blocks[1].cidr_block
+    cidr_block = "172.31.48.0/20"
     availability_zone = var.avail_zone
 
     tags = {
