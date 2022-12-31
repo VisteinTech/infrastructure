@@ -1,9 +1,9 @@
 vpc_cidr_block = "192.168.0.0/16"
-cidr_blocks = [
-  { cidr_block = "192.168.16.0/20", name = "subnet-1" },
-  { cidr_block = "192.168.80.0/20", name = "subnet-2" }
-]
+subnet_cidr_block = "192.168.16.0/20"
 env_prefix = "dev"
 avail_zone = "us-east-2a"
 region     = "us-east-2"
-
+my_ip = "174.89.107.63/32"
+public_key_path = "~/.ssh/id_rsa.pub"
+private_key_path = "~/.ssh/id_rsa"
+instance_type = "t2.micro"
