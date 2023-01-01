@@ -5,5 +5,4 @@ variable "avail_zone" {}
 variable "instance_type" {}
 variable "public_key_path" {}
 variable "private_key_path" {}
-
-
+variable "server_name" {}
