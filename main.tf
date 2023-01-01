@@ -108,6 +108,28 @@ resource "aws_instance" "circleapp-server" {
   associate_public_ip_address = true
   key_name = aws_key_pair.ssh-key.key_name
 
+  #user_data = file("./script.sh")
+
+  connection {
+    type = "ssh"
+    host = self.public_ip
+    user = "ec2-user"
+    private_key = file(var.private_key_path)
+  }
+
+  provisioner "file" {
+    source = "script.sh"
+    destination = "/home/ec2-user/script-on-ec2.sh"
+  }
+/*
+  provisioner "remote-exec" {
+    script = file("script-on-ec2.sh")
+  }
+*/
+  provisioner "local-exec" {
+    command = "echo ${self.public_ip} > output.txt"
+  }
+
   tags = {
     "Name" = "circleapp-server"
   }

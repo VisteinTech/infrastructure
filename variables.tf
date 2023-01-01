@@ -5,4 +5,5 @@ variable "env_prefix" {}
 variable "avail_zone" {}
 variable "my_ip" {}
 variable "public_key_path" {}
+variable "private_key_path" {}
 variable "instance_type" {}
