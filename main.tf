@@ -33,4 +33,5 @@ module "pipeline-server" {
   instance_type    = var.instance_type
   public_key_path  = var.public_key_path
   private_key_path = var.private_key_path
+  image_name = var.image_name
 }

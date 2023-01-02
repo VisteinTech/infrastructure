@@ -42,7 +42,7 @@ data "aws_ami" "aws-ami-data" {
 
   filter {
     name   = "name"
-    values = ["amzn2-ami-hvm-*-x86_64-gp2"]
+    values = [var.image_name]
   }
 
   filter {
@@ -60,6 +60,8 @@ resource "aws_instance" "pipeline-server" {
 
   associate_public_ip_address = true
   key_name                    = aws_key_pair.ssh-key.key_name
+
+  user_data = file("/modules/pipeline-server/script.sh")
 
   tags = {
     "Name" = "${var.server_name}-server"

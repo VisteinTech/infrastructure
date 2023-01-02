@@ -6,3 +6,4 @@ variable "instance_type" {}
 variable "public_key_path" {}
 variable "private_key_path" {}
 variable "server_name" {}
+variable "image_name" {}

@@ -7,3 +7,4 @@ variable "my_ip" {}
 variable "public_key_path" {}
 variable "private_key_path" {}
 variable "instance_type" {}
+variable "image_name" {}
