@@ -1,9 +1,10 @@
+variable "region" {}
 variable "vpc_cidr_block" {}
 variable "subnet_cidr_block" {}
-variable "region" {}
-variable "env_prefix" {}
 variable "avail_zone" {}
-variable "my_ip" {}
-variable "public_key_path" {}
-variable "private_key_path" {}
+variable "env_prefix" {}
 variable "instance_type" {}
+
+variable "public_key_path" {
+    default = "~/.ssh/id_rsa.pub"
+}

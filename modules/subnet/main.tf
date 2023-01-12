@@ -1,4 +1,4 @@
-resource "aws_subnet" "circleapp-subnet-1" {
+/*resource "aws_subnet" "circleapp-subnet-1" {
   vpc_id = var.vpc_id
   cidr_block = var.subnet_cidr_block
   availability_zone = var.avail_zone
@@ -30,4 +30,4 @@ resource "aws_default_route_table" "main-rtb" {
     "Name" = "main-rtb"
     "Environment" = "${var.env_prefix}"
   }
-}
+}*/
