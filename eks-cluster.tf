@@ -5,11 +5,11 @@ provider "kubernetes" {
 }
 
 data "aws_eks_cluster" "circleapp-cluster" {
-  name = module.eks.cluster_id
+  name = module.eks.cluster_name
 }
 
 data "aws_eks_cluster_auth" "circleapp-cluster" {
-  name = module.eks.cluster_id
+  name = module.eks.cluster_name
 }
 
 module "eks" {
@@ -22,12 +22,6 @@ module "eks" {
   subnet_ids = module.circleapp-vpc.private_subnets
   vpc_id  = module.circleapp-vpc.vpc_id
 
-
-  tags = {
-    environment = "development"
-    application = "circleapp"
-  }
-
   eks_managed_node_groups = {
     green = {
       min_size     = 1
@@ -37,6 +31,11 @@ module "eks" {
       instance_types = ["t2.small"]
       capacity_type  = "ON_DEMAND"
     }
+  }
+
+  tags = {
+    environment = "development"
+    application = "circleapp"
   }
 
 }
