@@ -7,7 +7,7 @@ Flow of execution
 5. Create route_table resource (default_route_table_id(= default) or vpc_id(!= Default), route(cidr_block=[0.0.0.0/0], gateway_id), tags)
    >> If not using default_route_table:
       we have to create aws_route_table_association (subnet_id, route_table_id)
-6. Create security_group resource (vpc_id, ingress, egress, tags)
+6. Create security_group resource (vpc_id, ingress(from_port, to_port, protocol, cidr_blocks), egress(same as ingress), tags)
 7. Create key_pair resource (key_name, public_key)
 8. Create instance resource (ami, subnet_id, vpc_security_group_ids/security_group, availability_zone, associate_public_ip_address, key_name, user_data, tags )
    >> For Provisioner Implementation:
