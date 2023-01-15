@@ -9,7 +9,7 @@ Flow of execution
       we have to create aws_route_table_association (subnet_id, route_table_id)
 6. Create security_group resource (vpc_id, ingress(from_port, to_port, protocol, cidr_blocks), egress(same as ingress), tags)
 7. Create key_pair resource (key_name, public_key)
-8. Create instance resource (ami, subnet_id, vpc_security_group_ids/security_group, availability_zone, associate_public_ip_address, key_name, user_data, tags )
+8. Create instance resource (ami, subnet_id, vpc_security_group_ids/security_group, availability_zone, associate_public_ip_address, key_name, user_data(for bootstraping the instance), tags )
    >> For Provisioner Implementation:
       connection (type, host, user, private_key)
       Create provisioner "file" (source, destination)
