@@ -4,7 +4,6 @@ variable "subnet_cidr_block" {}
 variable "avail_zone" {}
 variable "env_prefix" {}
 variable "instance_type" {}
-
 variable "public_key_path" {
-    default = "~/.ssh/id_rsa.pub"
+  default = "~/.ssh/id_rsa.pub"
 }

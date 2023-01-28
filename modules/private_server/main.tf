@@ -1,17 +1,18 @@
-resource "aws_instance" "dev-server" {
+resource "aws_instance" "private_server" {
 
     ami = data.aws_ami.linux.id
     instance_type = var.instance_type
 
     availability_zone = var.avail_zone
     subnet_id = var.subnet_id
-    vpc_security_group_ids = [aws_security_group.dev-server-sg.id]
+    vpc_security_group_ids = "${var.sg-ids}"
 
-    associate_public_ip_address = true
+    associate_public_ip_address = "${var.assignPublicIp}"
     key_name = aws_key_pair.ssh-key.key_name
 
     tags = {
-      "Name" = "${var.env_prefix}-server"
+      "Name" = "${var.name}-server"
+      "Environment" = "${var.env_prefix}"
     }
 
 }
@@ -31,8 +32,9 @@ data "aws_ami" "linux" {
   }
 }
 
-resource "aws_security_group" "dev-server-sg" {
-    name = "dev-server-sg"
+/*
+resource "aws_security_group" "private_server_sg" {
+    name = "${var.name}"
     vpc_id = var.vpc_id
 
     ingress {
@@ -53,13 +55,13 @@ resource "aws_security_group" "dev-server-sg" {
     }
 
     tags = {
-      "Name" = "${var.env_prefix}-sg"
+      "Name" = "${var.name}"
+      "Environment" = "${var.env_prefix}"
     }
-
-
 }
+*/
 
 resource "aws_key_pair" "ssh-key" {
-  key_name = "server-key"
+  key_name = "private-server-key"
   public_key = file("${var.public_key_path}")
 }
