@@ -19,6 +19,7 @@ resource "aws_instance" "public_server" {
 
 }
 
+/*
 resource "null_resource" "configure_server" {
   triggers = {
     trigger = aws_instance.public_server.public_ip
@@ -29,6 +30,7 @@ resource "null_resource" "configure_server" {
     command = "ansible-playbook --inventory ${aws_instance.public_server.public_ip}, --private-key ${var.private_key_path} --user ec2-user docker-Ec2.yaml"
   }
 }
+*/
 
 data "aws_ami" "linux" {
   most_recent = true

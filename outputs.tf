@@ -14,6 +14,11 @@ output "private-subnet-id" {
   value = module.private-subnet.private-subnet-info.id
 }
 
+/*
+# output "private-ip-1" {
+#   value = module.private-server.private-server-info.private_ip
+# }
+*/
 
 
 

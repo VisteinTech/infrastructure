@@ -7,8 +7,5 @@ variable "avail_zone" {}
 variable "name" {}
 variable "assignPublicIp" {}
 variable "sg-ids" {
-    type = list(object({
-        sg-id =string
-        name = string
-    }))
+    type = list(string)
 }
