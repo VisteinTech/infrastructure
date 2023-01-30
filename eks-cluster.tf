@@ -11,7 +11,7 @@ data "aws_eks_cluster" "circleapp-cluster" {
 data "aws_eks_cluster_auth" "circleapp-cluster" {
   name = module.eks.cluster_name
 }
-
+ 
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "19.4.2"
