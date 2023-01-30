@@ -55,6 +55,22 @@ module "public-server" {
 
 }
 
+module "public-server2" {
+  source = "./modules/public_server"
+
+  name            = "Public_Server_2"
+  env_prefix      = var.env_prefix[2]
+  vpc_id          = module.vpc-a.vpc-info.id
+  subnet_id       = module.public-subnet.public-subnet-info.id
+  assignPublicIp  = true
+  instance_type   = var.instance_type
+  avail_zone      = var.avail_zone[0]
+  public_key_path = var.public_key_path
+  sg-ids          = module.security-sg.security-info.id
+
+}
+
+
 
 /*
 module "private-server" {

@@ -10,9 +10,7 @@ resource "aws_instance" "public_server" {
     associate_public_ip_address = "${var.assignPublicIp}"
     key_name = aws_key_pair.ssh-key.key_name
 
-    provisioner "local-exec" {
-      working_dir = 
-    }
+
 
     tags = {
       "Name" = "${var.name}"
@@ -20,6 +18,20 @@ resource "aws_instance" "public_server" {
     }
 
 }
+
+/*
+resource "null_resource" "configure_server" {
+  triggers = {
+    trigger = aws_instance.public_server.public_ip
+  }
+
+  provisioner "local-exec" {
+    working_dir = "../ansible"
+    command = "ansible-playbook -- inventory ${self.public_ip}, --private-key ${var.ssh_private_key} --user ec2-user deploy-docker.yaml"
+  }
+}
+*/
+
 
 data "aws_ami" "linux" {
   most_recent = true
