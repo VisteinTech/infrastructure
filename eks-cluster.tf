@@ -22,6 +22,9 @@ module "eks" {
   subnet_ids = module.circleapp-vpc.private_subnets
   vpc_id  = module.circleapp-vpc.vpc_id
 
+  cluster_endpoint_public_access  = true #Enables users to connect to the cluster
+
+
   eks_managed_node_groups = {
     green = {
       min_size     = 1
