@@ -27,10 +27,9 @@ module "circleapp-vpc" {
 
   tags = {
     "kubernetes.io/cluster/circlapp-eks-cluster" = "shared"
-
   }
 
-  private_subnet_tags = {
+  private_subnet_tags = { 
     "kubernetes.io/cluster/circlapp-eks-cluster" = "shared"
     "kubernetes.io/role/elb"                     = 1
   }
@@ -40,6 +39,5 @@ module "circleapp-vpc" {
     "kubernetes.io/role/internal-elb"            = 1
 
   }
-
 
 }

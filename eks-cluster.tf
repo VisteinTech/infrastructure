@@ -5,11 +5,11 @@ provider "kubernetes" {
 }
 
 data "aws_eks_cluster" "circleapp-cluster" {
-  name = module.eks.cluster_name
+  name = module.eks.cluster_id
 }
 
 data "aws_eks_cluster_auth" "circleapp-cluster" {
-  name = module.eks.cluster_name
+  name = module.eks.cluster_id
 }
  
 module "eks" {
