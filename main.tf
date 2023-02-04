@@ -31,10 +31,10 @@ module "private-subnet" {
   env_prefix        = var.env_prefix[0]
 }
 
-module "security-sg" {
+module "server-sg" {
   source = "./modules/security_group"
 
-  sg-name    = "jenkins-server-sg"
+  sg-name    = "server-sg"
   env_prefix = var.env_prefix[0]
   vpc_id     = module.vpc-a.vpc-info.id
 }
@@ -51,10 +51,11 @@ module "public-server" {
   instance_type   = var.instance_type
   avail_zone      = var.avail_zone[0]
   public_key_path = var.public_key_path
-  sg-ids          = module.security-sg.security-info.id
+  sg-ids          = module.server-sg.security-info.id
 
 }
 
+/*
 module "public-server2" {
   source = "./modules/public_server"
 
@@ -66,11 +67,11 @@ module "public-server2" {
   instance_type   = var.instance_type
   avail_zone      = var.avail_zone[0]
   public_key_path = var.public_key_path
-  sg-ids          = module.security-sg.security-info.id
+  sg-ids          = module.server-sg.security-info.id
 
 }
 
-
+*/
 
 /*
 module "private-server" {

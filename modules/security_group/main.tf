@@ -1,7 +1,7 @@
 locals {
   ingress_rules = [ {
         port = 22
-        description = "ssh into server"
+        description = "allows ssh into server"
         protocol = "tcp"
   }]
 } 

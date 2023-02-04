@@ -49,7 +49,6 @@ data "aws_ami" "linux" {
 }
 
 
-
 resource "aws_key_pair" "ssh-key" {
   key_name = "public-server-key"
   public_key = file("${var.public_key_path}")
