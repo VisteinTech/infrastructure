@@ -1,0 +1,9 @@
+variable "vpc_cidr_block" {}
+variable "region" {}
+variable "env_prefix" {}
+variable "subnet_cidr_block" {}
+variable "avail_zone" {}
+variable "public_key_path" {}
+variable "master_instance_type" {}
+variable "worker_instance_type" {}
+variable "ami_image" {}
