@@ -7,3 +7,4 @@ variable "public_key_path" {}
 variable "master_instance_type" {}
 variable "worker_instance_type" {}
 variable "ami_image" {}
+variable "private_key_location" {}

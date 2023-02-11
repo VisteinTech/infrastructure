@@ -99,6 +99,7 @@ systemctl enable kubelet.service
 # Initialize Kubernates master by executing below commond.
 sudo kubeadm init
 
+
 sudo kubeadm token create --print-join-command >> /home/ubuntu/token.txt
 sudo chown -R ubuntu:ubuntu /home/ubuntu/token.txt
 
@@ -110,4 +111,6 @@ sudo chown -R ubuntu:ubuntu /home/ubuntu/.kube/config
 sudo -u ubuntu kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
 
 sudo chown -R ubuntu:ubuntu /home/ubuntu
+
+
 echo "Successfully provisioned"
