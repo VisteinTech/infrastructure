@@ -1,6 +1,6 @@
 resource "aws_instance" "public_server" {
 
-    ami = data.aws_ami.linux.id
+    ami = "ami-00eeedc4036573771" #data.aws_ami.linux.id
     instance_type = var.instance_type
 
     availability_zone = var.avail_zone
