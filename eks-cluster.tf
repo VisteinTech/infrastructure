@@ -5,11 +5,11 @@ provider "kubernetes" {
 }
 
 data "aws_eks_cluster" "circleapp-cluster" {
-  name = module.eks.cluster_id
+  name = module.eks.cluster_name
 }
 
 data "aws_eks_cluster_auth" "circleapp-cluster" {
-  name = module.eks.cluster_id
+  name = module.eks.cluster_name
 }
  
 module "eks" {
@@ -28,8 +28,8 @@ module "eks" {
   eks_managed_node_groups = {
     green = {
       min_size     = 1
-      max_size     = 2
-      desired_size = 1
+      max_size     = 4
+      desired_size = 2
 
       instance_types = ["t2.small"]
       capacity_type  = "ON_DEMAND"
