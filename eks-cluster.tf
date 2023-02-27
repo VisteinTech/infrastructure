@@ -16,7 +16,7 @@ module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "19.4.2"
 
-  cluster_name    = "circleapp-eks-cluster"
+  cluster_name   = "circleapp-eks-cluster"
   cluster_version = "1.24"
 
   subnet_ids = module.circleapp-vpc.private_subnets
