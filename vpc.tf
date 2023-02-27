@@ -26,18 +26,18 @@ module "circleapp-vpc" {
   enable_dns_hostnames = true #assign public and private dns names 
 
   tags = {
-    "kubernetes.io/cluster/circlapp-eks-cluster" = "shared"
+    "kubernetes.io/cluster/circleapp-eks-cluster" = "shared"
   }
-
-  private_subnet_tags = { 
-    "kubernetes.io/cluster/circlapp-eks-cluster" = "shared"
-    "kubernetes.io/role/elb"                     = 1
-  }
-
   public_subnet_tags = {
-    "kubernetes.io/cluster/circlapp-eks-cluster" = "shared"
-    "kubernetes.io/role/internal-elb"            = 1
-
+    "kubernetes.io/cluster/circleapp-eks-cluster" = "shared"
+    "kubernetes.io/role/elb"            = "1"
   }
+
+  private_subnet_tags = {
+    "kubernetes.io/cluster/circleapp-eks-cluster" = "shared"
+    "kubernetes.io/role/internal-elb"                     = "1"
+  }
+
+
 
 }
