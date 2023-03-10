@@ -1,0 +1,39 @@
+Variable types:
+simple types:
+  - number
+  - string
+  - bool
+  - null
+
+Complex:
+Collection types: (It groups values of the same type)
+  - list
+  - map
+  - set
+Structural types: (It groups values of different types)
+  - tuple
+  - object
+
+
+Some functions:
+element:
+  usage:
+    name = "${element(var.users, count.index)}"
+length:
+  usage:
+    count = "${length(var.users)}"
+
+
+for-each:
+ex:
+variable "users" {
+  type: list(string)
+  default: ["user1", "user2"]
+}
+
+resource "aws_iam_user" "test" {
+  for_each = toset(var.users)
+  name = each.key
+}
+
+
