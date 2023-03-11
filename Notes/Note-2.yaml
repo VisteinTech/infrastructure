@@ -1,0 +1,85 @@
+Variable types:
+simple types:
+  - number
+  - string
+  - bool
+  - null
+
+Complex:
+Collection types: (It groups values of the same type)
+  - list
+  - map
+  - set
+Structural types: (It groups values of different types)
+  - tuple
+  - object
+
+
+Some functions:
+element:
+  usage:
+    name = "${element(var.users, count.index)}"
+length:
+  usage:
+    count = "${length(var.users)}"
+
+LOCALS
+usage:
+  loacals {
+    "server" = "PROD"_SERVER"
+    "environment" = "PROD"
+  
+  }
+
+
+DYNAMIC BLOCKS
+
+variable "ingress" {
+  type = list(number)
+  default = [22, 8080, 443, 80]
+}
+
+dynamic "ingress" {
+  for_each: var. ingress_ports
+  content {
+    from_port = ingress.value
+  }
+}
+
+
+
+CONDITIONAL EXPRESSIONS
+variable "istest" {
+  type = bool
+  default = true
+}
+
+resource "aws_instance" "server_test" {
+  ami = var.ami
+  subnet = var.subnet
+  instance_type = "t2.micro"
+  count = var.istest == true ? 1:0
+}
+
+resource "aws_instance" "server_prod" {
+  ami = var.ami
+  subnet = var.subnet
+  instance_type = "t2.large"
+  count = var.istest == false ? 1:0
+}
+
+FOR_EACH 
+
+for-each:
+ex:
+variable "users" {
+  type: list(string)
+  default: ["user1", "user2"]
+}
+
+resource "aws_iam_user" "test" {
+  for_each = toset(var.users)
+  name = each.key
+}
+
+

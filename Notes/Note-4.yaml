@@ -1,0 +1,10 @@
+Backends and Remote State
+=============================
+
+The State file keeps track of everything Terraform does
+Local State is not good for production environments when working in a team
+it needs a locking mechanism to avoid running into race conditions
+
+Solution: sotre  the state remotely using the correct backend
+
+Backends define how operations are executed and where the Terraform State is stored

@@ -1,0 +1,35 @@
+Built-In Functions
+
+terraform console
+
+functions:
+max(10, 15,-5) 
+- returns 15
+
+min(2, -18, 5)
+- returns -18
+
+split(",", "one, two, three, Four")
+- reuturns a list
+
+timestamp()
+- returns current datetime
+
+formatdate("DD-MM-YYY hh:mm", timestamp())
+
+lookup(map, key)
+- ami = lookup(var.ami, var.region)
+
+file("file.sh")
+- reads a files
+
+user_data = file("${path.root}/file.sh")
+
+
+Splat expressions are used for lists, sets and turples 
+usage:
+output "private_addresses" {
+  value = aws_instance.server[*].private_ip
+}
+- returns all private ip
+
