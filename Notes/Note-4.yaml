@@ -5,6 +5,49 @@ The State file keeps track of everything Terraform does
 Local State is not good for production environments when working in a team
 it needs a locking mechanism to avoid running into race conditions
 
-Solution: sotre  the state remotely using the correct backend
+Solution: is to store the state remotely using the correct backend
 
 Backends define how operations are executed and where the Terraform State is stored
+
+Migrate state file from local to remote
+command: terraform init -migrate-state
+
+For S3 backend
+Create S3 bucket
+add to backend
+and to use state locking,
+create a dynamodbtable with a partition key name LockID
+
+
+terraform {
+  backend "s3" {
+    bucket = "master-terraform-backend-s3"
+    key = "s3_backend.tfstate"
+    region = "us-east-2"
+    dynamodb_table = "s3-state-lock"
+  }
+}
+
+
+
+
+For Terraform Cloud
+Create a terraform cloud account
+create an organization
+create a new workspace
+Authenticate to terraform cloud (terraform login)
+Create API token
+copy token to terraform login prompt 
+Initialize terraform
+
+Note: terraform credential is stored in =(~/.terraform.d/credentials.tfrc.json)
+
+
+terraform {
+  cloud {
+  organization = "master-terraform"
+  workspaces {
+      name = "Devops-Production"
+    }
+  }
+}

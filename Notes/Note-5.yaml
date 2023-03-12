@@ -1,0 +1,21 @@
+Terraform Modules
+
+Issues with complex configurations
+- Updates may cause problems in different parts of you configuration.
+- You'll repeat parts of your configuration.
+- Sharing is not easy
+
+A module is a set of configuration files in a single directory.
+tpyes of Modules
+- Local
+- Remote
+
+Modules are the key to writinh reusable, maintainable, and testable Terraform Code.
+
+Organize configuration
+Encapsulate configuation
+Re-use configuration
+Provide consistency
+Ensure best Practices
+
+
