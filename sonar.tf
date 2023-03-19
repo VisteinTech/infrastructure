@@ -2,7 +2,7 @@ module "sonarqube" {
   source = "./modules/public_server"
   
   name = "sonar"
-  ami = "ami-05502a22127df2492"
+  ami = "ami-05a36e1502605b4aa"
   vpc_id = module.ci-vpc.vpc-info.id
   subnet_id = module.subnet-public.subnet-id
   public_key_path = var.public_key_path

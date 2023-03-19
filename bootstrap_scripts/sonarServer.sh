@@ -59,4 +59,3 @@ PIDDIR="/opt/sonarqube/"
 EOT
 #Enable Sonar Service
 systemctl enable sonar
-systemctl start sonar
