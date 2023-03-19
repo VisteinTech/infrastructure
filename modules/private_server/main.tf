@@ -10,6 +10,8 @@ resource "aws_instance" "private_server" {
     associate_public_ip_address = "${var.assignPublicIp}"
     key_name = var.key_name
 
+    user_data = file("${var.user_data}")
+
     tags = {
       "Name" = "${var.name}-server"
       "Environment" = "${var.env_prefix}"

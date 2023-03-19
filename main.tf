@@ -36,6 +36,9 @@ module "key_name" {
   source = "./modules/key_pair" 
 }
 
+module "amazon_ami" {
+  source = "./modules/data"
+}
 
 
 

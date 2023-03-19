@@ -11,3 +11,4 @@ variable "assignPublicIp" {
 }
 variable "sg-ids" {}
 variable "key_name" {}
+variable "user_data" {}
