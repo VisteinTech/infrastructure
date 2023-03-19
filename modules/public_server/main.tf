@@ -8,29 +8,14 @@ resource "aws_instance" "public_server" {
     vpc_security_group_ids = ["${var.sg-ids}"]
 
     associate_public_ip_address = "${var.assignPublicIp}"
-    key_name = aws_key_pair.ssh-key.key_name
-
-
+    key_name = var.key_name
 
     tags = {
-      "Name" = "${var.name}"
+      "Name" = "${var.name}-server"
       "Environment" = "${var.env_prefix}"
     }
 
 }
-
-/*
-resource "null_resource" "configure_server" {
-  triggers = {
-    trigger = aws_instance.public_server.public_ip
-  }
-
-  provisioner "local-exec" {
-    working_dir = "../ansible"
-    command = "ansible-playbook -- inventory ${self.public_ip}, --private-key ${var.ssh_private_key} --user ec2-user deploy-docker.yaml"
-  }
-}
-*/
 
 
 data "aws_ami" "linux" {
@@ -49,7 +34,15 @@ data "aws_ami" "linux" {
 }
 
 
-resource "aws_key_pair" "ssh-key" {
-  key_name = "public-server-key"
-  public_key = file("${var.public_key_path}")
+/*
+resource "null_resource" "configure_server" {
+  triggers = {
+    trigger = aws_instance.public_server.public_ip
+  }
+
+  provisioner "local-exec" {
+    working_dir = "../ansible"
+    command = "ansible-playbook -- inventory ${self.public_ip}, --private-key ${var.ssh_private_key} --user ec2-user deploy-docker.yaml"
+  }
 }
+*/

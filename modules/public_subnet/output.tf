@@ -1,3 +1,3 @@
-output "public-subnet-info" {
-  value = aws_subnet.public_subnet
+output "subnet-id" {
+  value = aws_subnet.public_subnet.id
 }

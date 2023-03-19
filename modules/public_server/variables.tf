@@ -5,5 +5,9 @@ variable "public_key_path" {}
 variable "instance_type" {}
 variable "avail_zone" {}
 variable "name" {}
-variable "assignPublicIp" {}
+variable "assignPublicIp" {
+    type = bool
+    default = true
+}
 variable "sg-ids" {}
+variable "key_name" {}

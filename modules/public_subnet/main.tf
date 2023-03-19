@@ -1,6 +1,6 @@
 resource "aws_subnet" "public_subnet" {
   vpc_id = var.vpc_id
-  cidr_block = var.subnet_cidr_block
+  cidr_block = var.public_cidr_block
   availability_zone = var.avail_zone
 
   tags = {
@@ -8,7 +8,6 @@ resource "aws_subnet" "public_subnet" {
       "Environment" = "${var.env_prefix}" 
       }
 }
-
 
 resource "aws_internet_gateway" "igw" {
     vpc_id = var.vpc_id
@@ -31,6 +30,8 @@ resource "aws_route_table" "rtb" {
     "Environment" = "${var.env_prefix}"
   }
 }
+
+
 
 resource "aws_route_table_association" "rtb-association" {
     subnet_id = aws_subnet.public_subnet.id

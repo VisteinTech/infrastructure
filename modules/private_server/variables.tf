@@ -5,10 +5,9 @@ variable "public_key_path" {}
 variable "instance_type" {}
 variable "avail_zone" {}
 variable "name" {}
-variable "assignPublicIp" {}
-variable "sg-ids" {
-    type = list(object({
-        sg-id =string
-        name = string
-    }))
+variable "assignPublicIp" {
+    type = bool
+    default = false
 }
+variable "sg-ids" {}
+variable "key_name" {}
