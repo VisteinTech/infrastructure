@@ -2,7 +2,7 @@ module "nexus" {
   source = "./modules/public_server"
   
   name = "nexus"
-  ami = "ami-05a36e1502605b4aa"
+  ami = "ami-05a36e1502605b4aa" #centos 7
   vpc_id = module.ci-vpc.vpc-info.id
   subnet_id = module.subnet-public.subnet-id
   public_key_path = var.public_key_path
@@ -19,6 +19,6 @@ module "nexus-sg" {
 
   sg-name = "nexus-sg"
   vpc_id = module.ci-vpc.vpc-info.id
-  ingress_ports = [22,8081]
+  ingress_ports = [22,8081,8080]
   env_prefix = var.env_prefix[0]
 }

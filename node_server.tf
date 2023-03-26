@@ -1,25 +1,25 @@
-module "sonarqube" {
+module "node" {
   source = "./modules/public_server"
   
-  name = "sonar"
-  ami = "ami-05a36e1502605b4aa" #centos 7
+  name = "node"
+  ami = "ami-0d5bf08bc8017c83b" #ubuntu ami
   vpc_id = module.ci-vpc.vpc-info.id
   subnet_id = module.subnet-public.subnet-id
   public_key_path = var.public_key_path
-  sg-ids = module.sonar-sg.security-info.id
+  sg-ids = module.node-sg.security-info.id
   instance_type = var.instance_type
   avail_zone = var.avail_zone[0]
   env_prefix = var.env_prefix[0]
   key_name = module.key_name.public-key-name
-  user_data = "./bootstrap_scripts/sonarServer.sh"
+  user_data = "/bootstrap_scripts/jenkins.sh"
 }
 
-
-module "sonar-sg" {
+module "node-sg" {
   source = "./modules/security_group"
 
-  sg-name = "sonar-sg"
+  sg-name = "node-sg"
   vpc_id = module.ci-vpc.vpc-info.id
-  ingress_ports = [22,9000,8080]
+  ingress_ports = [22]
+
   env_prefix = var.env_prefix[0]
 }

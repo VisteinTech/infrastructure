@@ -10,7 +10,7 @@ then
 	echo "java is installed"
 else
 	echo "Installing Java"
-	sudo yum install java-1.8.0-openjdk.x86_64 -y
+	sudo yum install java-11-openjdk-devel -y
 fi
 
 if [ -e "/opt/sonarqube"]
@@ -45,17 +45,23 @@ sudo rm -rf sonarqube-*
 
 
 #setting ownership and permissions
-chown -R sonar:sonar /opt/sonarqube/sonarqube-*/
-chmod -R 775 /opt/sonarqube/sonarqube-*/
+chown -R sonar:sonar /opt/sonarqube/
+chmod -R 775 /opt/sonarqube/
+
+sudo -u sonar /opt/sonarqube/bin/linux-x86-64/sonar.sh start
+
 
 #configuring sonarqube as a service
-sudo ln /opt/sonarqube/sonarqube-*/bin/linux-x86-64/sonar.sh /etc/init.d/sonar
+# sudo ln /opt/sonarqube/bin/linux-x86-64/sonar.sh /etc/init.d/sonar
 
-cat <<EOT> /etc/init.d/sonar
-SONAR_HOME=/opt/sonarqube PLATFORM=linux-x86-64
-WRAPPER_CMD="${SONAR_HOME}/bin/${PLATFORM}/wrapper"
-WRAPPER_CONF="${SONAR_HOME}/conf/wrapper.conf"
-PIDDIR="/opt/sonarqube/"
-EOT
-#Enable Sonar Service
-systemctl enable sonar
+
+
+# cat <<EOT> /etc/init.d/sonar
+# WRAPPER_CMD="/opt/sonarqube/bin/linux-x86-64/wrapper"
+# WRAPPER_CONF="/opt/sonarqube/conf/wrapper.conf"
+# PIDDIR="/opt/sonarqube/"
+# EOT
+
+# #Enable Sonar Service
+# systemctl enable sonar
+# systemctl start sonar
